@@ -3,10 +3,7 @@ import fs from 'fs'; //for working with files
 import { getDatabase, ref, child, set } from "firebase/database";
 //import express from 'express';
 // Initialize Firebase
-import { app, auth, cpfLatam, senhaLatam }  from './firebase.js';
-import { signInWithEmailAndPassword } from "firebase/auth";
-
-signInWithEmailAndPassword(auth, 'oliveira.sergio@gmail.com', 'kedma256')
+import { app, user, cpfLatam, senhaLatam }  from './firebase.js';
 
 const dbRef = ref(getDatabase(app));
 const datetoDate = (dia) => new Date(dia * 3600000 * 24 + 1)
@@ -14,6 +11,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const hj = () => (new Date().getTime()/86400000)|0
 
+console.log(user)
 //save cookie function 
 const saveCookie = async (context) => {
     const cookies = await context.cookies();
@@ -298,7 +296,8 @@ export const getMiles = async (dd) => {
 export const startMiles = async (numPages) => {
 
     // Launch the browser
-    const browser = await firefox.launch({executablePath: '/ms-playwright/firefox-1403/firefox/firefox'}); 
+    const browser = await firefox.launch(); 
+//    const browser = await firefox.launch({executablePath: '/ms-playwright/firefox-1403/firefox/firefox'}); 
 //    const browser = await firefox.launch({headless:false}); 
     const context = await browser.newContext(); 
     await loadCookie(context)
