@@ -1,15 +1,12 @@
 import { getDatabase, ref, child, get } from "firebase/database";
 import { deleteApp } from "firebase/app";
-//import express from 'express';
 // Initialize Firebase
 import { app, user }  from './firebase.js';
 import { startMiles, findMiles, endMiles } from './getmilhas.js';
-//import { signInWithEmailAndPassword } from "firebase/auth";
 
 (async () => {
   let first = true
   const dbRef = ref(getDatabase(app));
-  //signInWithEmailAndPassword(auth, 'oliveira.sergio@gmail.com', 'kedma256')
   const context = await startMiles(7)
   get(child(dbRef, `/users/${user.uid}/`))
     .then(async (r) => {
