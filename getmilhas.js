@@ -296,8 +296,8 @@ export const getMiles = async (dd) => {
 export const startMiles = async (numPages) => {
 
     // Launch the browser
- //   const browser = await firefox.launch({headless:false}); 
-    const browser = await firefox.launch({executablePath: '/ms-playwright/firefox-1403/firefox/firefox'}); 
+   const browser = await firefox.launch(); 
+ //   const browser = await firefox.launch({executablePath: '/ms-playwright/firefox-1403/firefox/firefox'}); 
 //    const browser = await firefox.launch({headless:false}); 
     const context = await browser.newContext(); 
     await loadCookie(context)
